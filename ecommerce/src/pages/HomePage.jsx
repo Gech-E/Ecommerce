@@ -3,10 +3,11 @@ import './header.css'
 
 export function HomePage() {
     return (
-        <div>
+        <>
+            <title>Ecommerce Project</title>
             <div class="header">
                 <div class="left-section">
-                    <a href="index.html" class="header-link">
+                    <a href="/" class="header-link">
                         <img class="logo"
                             src="images/logo-white.png" />
                         <img class="mobile-logo"
@@ -23,12 +24,12 @@ export function HomePage() {
                 </div>
 
                 <div class="right-section">
-                    <a class="orders-link header-link" href="orders.html">
+                    <a class="orders-link header-link" href="/orders">
 
                         <span class="orders-text">Orders</span>
                     </a>
 
-                    <a class="cart-link header-link" href="checkout.html">
+                    <a class="cart-link header-link" href="/checkout">
                         <img class="cart-icon" src="images/icons/cart-icon.png" />
                         <div class="cart-quantity">3</div>
                         <div class="cart-text">Cart</div>
@@ -186,6 +187,6 @@ export function HomePage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
