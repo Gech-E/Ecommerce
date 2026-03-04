@@ -1,0 +1,58 @@
+.payment-summary {
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 4px;
+    padding: 18px;
+    padding-bottom: 5px;
+}
+
+@media (max-width: 1000px) {
+    .payment-summary {
+        grid-row: 1;
+        margin-bottom: 12px;
+    }
+}
+
+.payment-summary .payment-summary-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.payment-summary .payment-summary-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.payment-summary .payment-summary-money {
+    text-align: right;
+}
+
+.payment-summary .subtotal-row .payment-summary-money {
+    border-top: 1px solid rgb(222, 222, 222);
+}
+
+.payment-summary .subtotal-row div {
+    padding-top: 9px;
+}
+
+.payment-summary .total-row {
+    color: rgb(25, 135, 84);
+    font-weight: 700;
+    font-size: 18px;
+
+    border-top: 1px solid rgb(222, 222, 222);
+    padding-top: 18px;
+}
+
+.payment-summary .place-order-button {
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 5px;
+
+    margin-top: 20px;
+    margin-bottom: 19px;
+}

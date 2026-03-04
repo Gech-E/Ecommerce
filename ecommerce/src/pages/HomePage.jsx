@@ -1,164 +1,38 @@
-import { Header } from '../components/header'
-import '../components/header.css'
-import './HomePage.css'
-
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router';
+import { Header } from '../components/Header';
+import { ProductCard } from '../components/ProductCard';
+import './HomePage.css';
 
 export function HomePage() {
+    const [products, setProducts] = useState([]);
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search') || '';
+
+    useEffect(() => {
+        const url = search ? `/api/products?search=${encodeURIComponent(search)}` : '/api/products';
+        fetch(url)
+            .then((res) => res.json())
+            .then(setProducts);
+    }, [search]);
+
     return (
         <>
-
             <title>Ecommerce Project</title>
             <Header />
 
-
-            <div class="home-page">
-                <div class="products-grid">
-                    <div class="product-container">
-                        <div class="product-image-container">
-                            <img class="product-image"
-                                src="images/products/athletic-cotton-socks-6-pairs.jpg" />
-                        </div>
-
-                        <div class="product-name limit-text-to-2-lines">
-                            Black and Gray Athletic Cotton Socks - 6 Pairs
-                        </div>
-
-                        <div class="product-rating-container">
-                            <img class="product-rating-stars"
-                                src="images/ratings/rating-45.png" />
-                            <div class="product-rating-count link-primary">
-                                87
-                            </div>
-                        </div>
-
-                        <div class="product-price">
-                            $10.90
-                        </div>
-
-                        <div class="product-quantity-container">
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div className="product-spacer"></div>
-
-                        <div className="added-to-cart">
-                            <img src="images/icons/checkmark.png" />
-                            Added
-                        </div>
-
-                        <button className="add-to-cart-button button-primary">
-                            Add to Cart
-                        </button>
-                    </div>
-
-                    <div class="product-container">
-                        <div class="product-image-container">
-                            <img class="product-image"
-                                src="images/products/intermediate-composite-basketball.jpg" />
-                        </div>
-
-                        <div class="product-name limit-text-to-2-lines">
-                            Intermediate Size Basketball
-                        </div>
-
-                        <div class="product-rating-container">
-                            <img class="product-rating-stars"
-                                src="images/ratings/rating-40.png" />
-                            <div class="product-rating-count link-primary">
-                                127
-                            </div>
-                        </div>
-
-                        <div class="product-price">
-                            $20.95
-                        </div>
-
-                        <div class="product-quantity-container">
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="product-spacer"></div>
-
-                        <div class="added-to-cart">
-                            <img src="images/icons/checkmark.png" />
-                            Added
-                        </div>
-
-                        <button class="add-to-cart-button button-primary">
-                            Add to Cart
-                        </button>
-                    </div>
-
-                    <div class="product-container">
-                        <div class="product-image-container">
-                            <img class="product-image"
-                                src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg" />
-                        </div>
-
-                        <div class="product-name limit-text-to-2-lines">
-                            Adults Plain Cotton T-Shirt - 2 Pack
-                        </div>
-
-                        <div class="product-rating-container">
-                            <img class="product-rating-stars"
-                                src="images/ratings/rating-45.png" />
-                            <div class="product-rating-count link-primary">
-                                56
-                            </div>
-                        </div>
-
-                        <div class="product-price">
-                            $7.99
-                        </div>
-
-                        <div class="product-quantity-container">
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="product-spacer"></div>
-
-                        <div class="added-to-cart">
-                            <img src="images/icons/checkmark.png" />
-                            Added
-                        </div>
-
-                        <button class="add-to-cart-button button-primary">
-                            Add to Cart
-                        </button>
-                    </div>
+            <div className="home-page">
+                <div className="products-grid">
+                    {products.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            productId={product.id}
+                            image={product.image}
+                            name={product.name}
+                            rating={product.rating}
+                            priceCents={product.priceCents}
+                        />
+                    ))}
                 </div>
             </div>
         </>
