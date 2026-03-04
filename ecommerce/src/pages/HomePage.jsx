@@ -1,5 +1,4 @@
-import { Heaader } from '../components/header'
-import { Link } from 'react-router';
+import { Header } from '../components/header'
 import '../components/header.css'
 import './HomePage.css'
 
@@ -9,7 +8,7 @@ export function HomePage() {
         <>
 
             <title>Ecommerce Project</title>
-            <Heaader />
+            <Header />
 
 
             <div class="home-page">

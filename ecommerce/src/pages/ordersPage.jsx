@@ -1,4 +1,4 @@
-import { Heaader } from '../components/header'
+import { Header } from '../components/header'
 import './ordersPage.css'
 
 
@@ -6,7 +6,7 @@ export function OrdersPage() {
     return (
         <>
             <title>Orders</title>
-            <Heaader />
+            <Header />
 
             <div className="orders-page">
                 <div className="page-title">Your Orders</div>
